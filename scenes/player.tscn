@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ci5h3ttepy8i8"]
+[gd_scene load_steps=12 format=3 uid="uid://ci5h3ttepy8i8"]
 
 [ext_resource type="Texture2D" uid="uid://cf558cntqgt2g" path="res://assets/player/player.png" id="1_fhtum"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_l6noa"]
 [ext_resource type="PackedScene" uid="uid://fhgxyifgwvfk" path="res://scenes/player_blaster.tscn" id="2_xpvjp"]
+[ext_resource type="PackedScene" uid="uid://bexn610a8mmg" path="res://scenes/hurtbox.tscn" id="4_x0nb8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ttgl"]
 size = Vector2(9, 14)
@@ -98,8 +99,14 @@ _data = {
 "run": SubResource("Animation_y42wh")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aar8v"]
+size = Vector2(7, 14)
+
 [node name="Player" type="CharacterBody2D"]
+z_index = 10
 position = Vector2(0, -12)
+collision_layer = 4
+collision_mask = 3
 floor_constant_speed = true
 script = ExtResource("1_l6noa")
 
@@ -108,6 +115,7 @@ show_behind_parent = true
 position = Vector2(0, 4)
 
 [node name="PlayerSprite2D" type="Sprite2D" parent="."]
+z_index = 10
 position = Vector2(0, 12)
 texture = ExtResource("1_fhtum")
 offset = Vector2(0, -12)
@@ -139,3 +147,17 @@ one_shot = true
 wait_time = 0.25
 one_shot = true
 autostart = true
+
+[node name="DropThroughTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_x0nb8")]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_aar8v")
+
+[connection signal="timeout" from="DropThroughTimer" to="." method="_on_drop_through_timer_timeout"]
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

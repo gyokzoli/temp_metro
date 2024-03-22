@@ -21,6 +21,8 @@ const DustEffectScene = preload("res://scenes/dust_effect.tscn")
 @onready var coyote_timer = $CoyoteTimer
 @onready var player_blaster = $PlayerBlaster
 @onready var fire_rate_timer: Timer = $FireRateTimer
+@onready var drop_through_timer: Timer = $DropThroughTimer
+@onready var camera_2d: Camera2D = $Camera2D
 
 
 func _physics_process(delta) -> void:
@@ -34,6 +36,9 @@ func _physics_process(delta) -> void:
 	if Input.is_action_pressed("fire") and fire_rate_timer.time_left == 0:
 		fire_rate_timer.start()
 		player_blaster.fire_bullet()
+	if Input.is_action_just_pressed("crouch"):
+		set_collision_mask_value(2, false)
+		drop_through_timer.start()
 	update_animations(input_axis)
 	var was_on_floor = is_on_floor()
 	move_and_slide()
@@ -80,3 +85,10 @@ func update_animations(input_axis: float) -> void:
 	if not is_on_floor():
 		animation_player.play("jump")
 
+
+func _on_drop_through_timer_timeout() -> void:
+	set_collision_mask_value(2, true)
+
+func _on_hurtbox_hurt(_hitbox: Hitbox, _damage: int) -> void:
+	camera_2d.reparent(get_tree().current_scene)
+	queue_free()

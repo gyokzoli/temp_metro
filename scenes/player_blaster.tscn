@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d1ya4nk244h52" path="res://assets/player/player_blaster.png" id="1_uwbho"]
 
 [node name="PlayerBlaster" type="Node2D"]
+z_index = 9
 script = ExtResource("1_twaoo")
 
 [node name="BlasterSprite2D" type="Sprite2D" parent="."]

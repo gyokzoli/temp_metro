@@ -21,6 +21,7 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.99
 one_shot = true
 autostart = true
 
