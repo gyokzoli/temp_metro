@@ -20,6 +20,7 @@ const DustEffectScene = preload("res://scenes/dust_effect.tscn")
 @onready var player_sprite_2d = $PlayerSprite2D
 @onready var coyote_timer = $CoyoteTimer
 @onready var player_blaster = $PlayerBlaster
+@onready var fire_rate_timer: Timer = $FireRateTimer
 
 
 func _physics_process(delta) -> void:
@@ -30,7 +31,8 @@ func _physics_process(delta) -> void:
 	else:
 		apply_friction(delta)
 	apply_jump()
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_pressed("fire") and fire_rate_timer.time_left == 0:
+		fire_rate_timer.start()
 		player_blaster.fire_bullet()
 	update_animations(input_axis)
 	var was_on_floor = is_on_floor()
