@@ -1,11 +1,11 @@
 class_name Projectile
 extends Node2D
 
-const ExplosionEffectScene = preload("res://scenes/explosion_effect.tscn")
+const ExplosionEffectScene: PackedScene = preload("res://scenes/explosion_effect.tscn")
 
 @export var speed = 250
 
-var velocity = Vector2.ZERO
+var velocity: Vector2 = Vector2.ZERO
 
 
 func _process(delta) -> void:

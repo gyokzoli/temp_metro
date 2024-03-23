@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ci5h3ttepy8i8"]
+[gd_scene load_steps=17 format=3 uid="uid://ci5h3ttepy8i8"]
 
 [ext_resource type="Texture2D" uid="uid://cf558cntqgt2g" path="res://assets/player/player.png" id="1_fhtum"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_l6noa"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bexn610a8mmg" path="res://scenes/hurtbox.tscn" id="4_x0nb8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ttgl"]
-size = Vector2(9, 14)
+size = Vector2(8, 14)
 
 [sub_resource type="Animation" id="Animation_st3si"]
 length = 0.001
@@ -92,16 +92,124 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_o8iia"]
+resource_name = "wall_slide"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k84vo"]
 _data = {
 "RESET": SubResource("Animation_st3si"),
 "idle": SubResource("Animation_6yj8r"),
 "jump": SubResource("Animation_5ixyd"),
-"run": SubResource("Animation_y42wh")
+"run": SubResource("Animation_y42wh"),
+"wall_slide": SubResource("Animation_o8iia")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aar8v"]
 size = Vector2(7, 14)
+
+[sub_resource type="Animation" id="Animation_ag40t"]
+resource_name = "blink"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerBlaster:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true, false, true, false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurtbox")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"@is_invincible_setter"
+}, {
+"args": [false],
+"method": &"@is_invincible_setter"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xbj8l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerBlaster:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurtbox")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"@is_invincible_setter"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nf8ht"]
+_data = {
+"RESET": SubResource("Animation_xbj8l"),
+"blink": SubResource("Animation_ag40t")
+}
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
@@ -109,6 +217,7 @@ position = Vector2(0, -12)
 collision_layer = 4
 collision_mask = 3
 floor_constant_speed = true
+safe_margin = 0.2
 script = ExtResource("1_l6noa")
 
 [node name="PlayerBlaster" parent="." instance=ExtResource("2_xpvjp")]
@@ -129,7 +238,7 @@ update_rotation = false
 update_scale = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 4)
+position = Vector2(-1, 4)
 shape = SubResource("RectangleShape2D_5ttgl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -158,6 +267,11 @@ collision_layer = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-0.5, 4)
 shape = SubResource("RectangleShape2D_aar8v")
+
+[node name="BlinkingAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nf8ht")
+}
 
 [connection signal="timeout" from="DropThroughTimer" to="." method="_on_drop_through_timer_timeout"]
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

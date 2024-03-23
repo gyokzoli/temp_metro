@@ -1,14 +1,14 @@
 extends CharacterBody2D
 
-@export var speed : float = 30.0
-@export var turns_at_legdes : bool = true
+@export var speed: float = 30.0
+@export var turns_at_legdes: bool = true
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var floor_cast: RayCast2D = $FloorCast
 @onready var statistics: Node = $Statistics
 
-var gravity : float = 200.0
-var direction : float = 1.0
+var gravity: float = 200.0
+var direction: float = 1.0
 
 
 func _physics_process(delta: float) -> void:

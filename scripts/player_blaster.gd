@@ -1,9 +1,9 @@
 extends Node2D
 
-const BulletScene = preload("res://scenes/bullet.tscn")
+const BulletScene: PackedScene = preload("res://scenes/bullet.tscn")
 
-@onready var blaster_sprite_2d = $BlasterSprite2D
-@onready var muzzle = $BlasterSprite2D/Muzzle
+@onready var blaster_sprite_2d: Sprite2D = $BlasterSprite2D
+@onready var muzzle: Marker2D = $BlasterSprite2D/Muzzle
 
 
 func _process(_delta) -> void:
