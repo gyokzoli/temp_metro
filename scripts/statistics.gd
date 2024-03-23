@@ -1,3 +1,4 @@
+class_name Statistics
 extends Node
 
 @export var max_health: int = 3: set = _set_max_health, get = _get_max_health

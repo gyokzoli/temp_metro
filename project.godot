@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Utils="*res://scripts/utils.gd"
+Events="*res://scripts/events.gd"
+PlayerStats="*res://scenes/player_stats.tscn"
 
 [display]
 
