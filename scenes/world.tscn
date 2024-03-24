@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsd7op3osn5sx"]
+[gd_scene load_steps=11 format=3 uid="uid://bsd7op3osn5sx"]
 
 [ext_resource type="PackedScene" uid="uid://ci5h3ttepy8i8" path="res://scenes/player.tscn" id="1_2pgvb"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_7riex"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cemcq4l5tcltv" path="res://scenes/walking_enemy.tscn" id="5_jjcgb"]
 [ext_resource type="PackedScene" uid="uid://dxmw451oh44kt" path="res://scenes/health_meter.tscn" id="7_sqogv"]
 [ext_resource type="PackedScene" uid="uid://byde0o5ve0pdy" path="res://scenes/plant_enemy.tscn" id="8_3s46v"]
+[ext_resource type="PackedScene" uid="uid://c8k5h7h0cdiv2" path="res://scenes/crawling_enemy.tscn" id="9_7i2ak"]
+[ext_resource type="PackedScene" uid="uid://cs8cgvjpwxpds" path="res://scenes/flying_enemy.tscn" id="10_8r5m7"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_7riex")
@@ -76,13 +78,29 @@ position = Vector2(480, 16)
 rotation = -1.57079
 
 [node name="WalkingEnemy" parent="Enemies" instance=ExtResource("5_jjcgb")]
-position = Vector2(32, 104)
+position = Vector2(376, 136)
 
 [node name="WalkingEnemy2" parent="Enemies" instance=ExtResource("5_jjcgb")]
 position = Vector2(136, 160)
 
 [node name="WalkingEnemy3" parent="Enemies" instance=ExtResource("5_jjcgb")]
 position = Vector2(232, 152)
+
+[node name="CrawlingEnemy" parent="Enemies" instance=ExtResource("9_7i2ak")]
+position = Vector2(48, 128)
+crawling_direction = -1
+
+[node name="CrawlingEnemy2" parent="Enemies" instance=ExtResource("9_7i2ak")]
+position = Vector2(248, 112)
+
+[node name="FlyingEnemy" parent="Enemies" instance=ExtResource("10_8r5m7")]
+position = Vector2(96, 40)
+
+[node name="FlyingEnemy2" parent="Enemies" instance=ExtResource("10_8r5m7")]
+position = Vector2(464, 136)
+
+[node name="FlyingEnemy3" parent="Enemies" instance=ExtResource("10_8r5m7")]
+position = Vector2(296, 0)
 
 [editable path="MovingPlatform"]
 [editable path="MovingPlatform2"]

@@ -79,7 +79,7 @@ libraries = {
 }
 autoplay = "attack"
 
-[node name="BullerSpawnPoint" type="Marker2D" parent="."]
+[node name="BulletSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(0, -10)
 
 [node name="FireDirection" type="Marker2D" parent="."]
@@ -100,6 +100,9 @@ position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_oags7")
 
 [node name="Statistics" parent="." instance=ExtResource("5_eqte0")]
+
+[node name="DeathEffectLocation" type="Marker2D" parent="."]
+position = Vector2(0, -6)
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="no_health" from="Statistics" to="." method="_on_statistics_no_health"]

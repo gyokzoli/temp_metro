@@ -30,6 +30,12 @@ var state: Callable = move_state
 
 func _ready() -> void:
 	PlayerStats.no_health.connect(die)
+	
+func _enter_tree() -> void:
+	MainInstances.player = self
+
+func _exit_tree() -> void:
+	MainInstances.player = null
 
 func _physics_process(delta: float) -> void:
 	state.call(delta)
@@ -59,14 +65,14 @@ func move_state (delta: float) -> void:
 	wall_check()
 
 func wall_slide_state(delta: float) -> void:
-	var wall_normal: float = get_wall_normal().x
+	var wall_normal: int = int(get_wall_normal().x)
 	animation_player.play("wall_slide")
 	player_sprite_2d.scale.x = sign(wall_normal)
 	#velocity.y = clampf(velocity.y, -wall_slide_speed, max_wall_slide_speed)
 	wall_jump_check(wall_normal)
 	wall_slide(delta)
-	wall_detach_check(delta)
 	move_and_slide()
+	wall_detach_check(delta, wall_normal)
 
 
 func wall_slide(delta: float) -> void:
@@ -75,19 +81,19 @@ func wall_slide(delta: float) -> void:
 		slide_speed = max_wall_slide_speed
 	velocity.y = move_toward(velocity.y, slide_speed, gravity * delta)
 
-func wall_detach_check(delta: float) -> void:
+func wall_detach_check(delta: float, wall_axis: int) -> void:
 	#if get_wall_normal() == Vector2.ZERO and not is_on_wall_only(): state = move_state
 	if not is_on_wall_only(): state = move_state
 	else:
-		if Input.is_action_just_pressed("right"):
+		if Input.is_action_just_pressed("right") and wall_axis == 1:
 			velocity.x = acceleration * delta
 			state = move_state
-		if Input.is_action_just_pressed("left"):
+		if Input.is_action_just_pressed("left") and wall_axis == -1:
 			velocity.x = -acceleration * delta
 			state = move_state
 
 func wall_check() -> void:
-	if is_on_wall():
+	if is_on_wall_only():
 		state = wall_slide_state
 		create_dust_effect()
 

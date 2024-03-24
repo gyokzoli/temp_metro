@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dqt6wqn73l3ll"]
+
+[node name="WaypointPathfinding" type="Node2D"]
