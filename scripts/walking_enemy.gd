@@ -37,5 +37,5 @@ func _on_hurtbox_hurt(_hitbox: Hitbox, damage: int) -> void:
 	statistics.health -= damage
 
 func _on_statistics_no_health() -> void:
-	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, death_effect_location.global_position)
+	Utils.instantiate_scene_on_level(EnemyDeathEffectScene, death_effect_location.global_position)
 	queue_free()

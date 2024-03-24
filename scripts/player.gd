@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 const DustEffectScene: PackedScene = preload("res://scenes/dust_effect.tscn")
@@ -43,7 +44,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("fire") and fire_rate_timer.time_left == 0:
 		fire_rate_timer.start()
 		player_blaster.fire_bullet()
-	if (Input.is_action_pressed("fire_missile") and fire_rate_timer.time_left == 0 
+	if (Input.is_action_pressed("fire_missile")
+	and fire_rate_timer.time_left == 0 
 	and PlayerStats.missiles > 0):
 		fire_rate_timer.start()
 		player_blaster.fire_missile()
@@ -52,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
 func move_state (delta: float) -> void:
 	apply_gravity(delta)
-	var input_axis : float = Input.get_axis("left", "right")
+	var input_axis: float = Input.get_axis("left", "right")
 	if is_moving(input_axis):
 		apply_horizontal_force(delta, input_axis)
 	else:
@@ -62,9 +64,9 @@ func move_state (delta: float) -> void:
 		set_collision_mask_value(2, false)
 		drop_through_timer.start()
 	update_animations(input_axis)
-	var was_on_floor = is_on_floor()
+	var was_on_floor: bool = is_on_floor()
 	move_and_slide()
-	var just_left_edge = was_on_floor and not is_on_floor() and velocity.y >= 0
+	var just_left_edge: bool = was_on_floor and not is_on_floor() and velocity.y >= 0
 	if just_left_edge:
 		#coyote_timer.wait_time = 0.2
 		coyote_timer.start()
@@ -109,15 +111,13 @@ func wall_jump_check(wall_axis: float) -> void:
 		state = move_state
 		double_jump = true
 		jump(int(jump_force * 0.75), false)
-		var wall_jump_effect_position = global_position + Vector2(wall_axis * 3.5, -2)
-		var wall_jump_effect = Utils.instantiate_scene_on_world(WallJumpEffectScene, wall_jump_effect_position)
+		var wall_jump_effect_position: Vector2 = global_position + Vector2(wall_axis * 3.5, -2)
+		var wall_jump_effect: Node = Utils.instantiate_scene_on_level(WallJumpEffectScene, wall_jump_effect_position)
 		wall_jump_effect.scale.x = wall_axis
-		
-
 
 
 func create_dust_effect() -> void:
-	Utils.instantiate_scene_on_world(DustEffectScene, global_position + Vector2(0,8))
+	Utils.instantiate_scene_on_level(DustEffectScene, global_position)
 	
 func is_moving(input_axis: float):
 	return input_axis != 0
@@ -127,7 +127,7 @@ func apply_gravity(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, max_fall_speed, gravity * delta)
 
 func apply_horizontal_force(delta: float, input_axis : float) -> void:
-	var multiplier = air_multiplier if not is_on_floor() else 1.0
+	var multiplier: float = air_multiplier if not is_on_floor() else 1.0
 	velocity.x = move_toward(velocity.x, input_axis * max_velocity, acceleration * multiplier * delta)
 	
 func apply_friction(delta: float) -> void:
@@ -150,7 +150,7 @@ func apply_jump() -> void:
 
 func jump(force: int, create_effect: bool = true) -> void:
 		velocity.y = -force
-		if create_effect: Utils.instantiate_scene_on_world(JumpEffectScene, global_position)
+		if create_effect: Utils.instantiate_scene_on_level(JumpEffectScene, global_position)
 
 func update_animations(input_axis: float) -> void:
 	player_sprite_2d.scale.x = sign(get_local_mouse_position().x)

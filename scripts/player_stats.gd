@@ -7,11 +7,11 @@ signal max_missiles_changed
 signal missiles_changed
 
 
-func set_max_missiles(value: int):
+func set_max_missiles(value: int) -> void:
 	max_missiles = value
 	max_missiles_changed.emit()
 
-func set_missiles(value: int):
+func set_missiles(value: int) -> void:
 	missiles = clampi(value, 0, max_missiles)
 	missiles_changed.emit()
 

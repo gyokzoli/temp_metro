@@ -40,7 +40,7 @@ func crawling_state(delta: float) -> void:
 				break
 		if floor_cast.is_colliding():
 			global_position = floor_cast.get_collision_point()
-			var floor_normal = floor_cast.get_collision_normal()
+			var floor_normal: Vector2 = floor_cast.get_collision_normal()
 			rotation = floor_normal.rotated(deg_to_rad(90)).angle()
 
 func falling_state(delta: float) -> void:
@@ -54,6 +54,6 @@ func _on_hurtbox_hurt(_hitbox: Hitbox, damage: int) -> void:
 	statistics.health -= damage
 
 func _on_statistics_no_health() -> void:
-	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, global_position)
+	Utils.instantiate_scene_on_level(EnemyDeathEffectScene, global_position)
 	queue_free()
 	

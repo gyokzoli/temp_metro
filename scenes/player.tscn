@@ -213,7 +213,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
-position = Vector2(0, -12)
+position = Vector2(0, -14)
 collision_layer = 4
 collision_mask = 3
 floor_constant_speed = true
@@ -222,11 +222,10 @@ script = ExtResource("1_l6noa")
 
 [node name="PlayerBlaster" parent="." instance=ExtResource("2_xpvjp")]
 show_behind_parent = true
-position = Vector2(0, 4)
+position = Vector2(0, -8)
 
 [node name="PlayerSprite2D" type="Sprite2D" parent="."]
 z_index = 10
-position = Vector2(0, 12)
 texture = ExtResource("1_fhtum")
 offset = Vector2(0, -12)
 hframes = 12
@@ -238,7 +237,7 @@ update_rotation = false
 update_scale = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 4)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_5ttgl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -247,6 +246,7 @@ libraries = {
 }
 
 [node name="Camera2D" parent="." instance=ExtResource("4_dmpte")]
+position = Vector2(0, -8)
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.15
@@ -262,10 +262,11 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Hurtbox" parent="." instance=ExtResource("4_x0nb8")]
+position = Vector2(0, -11)
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-0.5, 4)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_aar8v")
 
 [node name="BlinkingAnimationPlayer" type="AnimationPlayer" parent="."]
@@ -274,7 +275,7 @@ libraries = {
 }
 
 [node name="Center" type="Marker2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, -8)
 
 [connection signal="timeout" from="DropThroughTimer" to="." method="_on_drop_through_timer_timeout"]
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

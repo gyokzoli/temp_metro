@@ -14,8 +14,8 @@ func _ready() -> void:
 	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
-	var player = MainInstances.player
-	if player is CharacterBody2D:
+	var player: CharacterBody2D = MainInstances.player
+	if player is Player:
 		move_toward_position(waypoint_pathfinding.pathfinding_next_position, delta)
 	
 
@@ -30,7 +30,7 @@ func _on_hurtbox_hurt(_hitbox: Hitbox, damage: int) -> void:
 	statistics.health -= damage
 
 func _on_statistics_no_health() -> void:
-	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, global_position)
+	Utils.instantiate_scene_on_level(EnemyDeathEffectScene, global_position)
 	queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:

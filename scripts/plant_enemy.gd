@@ -14,7 +14,7 @@ const EnemyDeathEffectScene: PackedScene = preload("res://scenes/enemy_death_eff
 
 
 func fire_bullet() -> void:
-	var bullet: Projectile = Utils.instantiate_scene_on_world(EnemyBulletScene, bullet_spawn_point.global_position) as Projectile
+	var bullet: Projectile = Utils.instantiate_scene_on_level(EnemyBulletScene, bullet_spawn_point.global_position) as Projectile
 	var direction: Vector2 = global_position.direction_to(fire_direction.global_position)
 	#with the commendted out section, the enemy bullets are not rotated, only their vector
 	#var velocity: Vector2 = direction.normalized() * bullet_speed
@@ -31,7 +31,7 @@ func _on_hurtbox_hurt(_hitbox: Hitbox, damage: int) -> void:
 	statistics.health -= damage
 
 func _on_statistics_no_health() -> void:
-	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, death_effect_location.global_position)
+	Utils.instantiate_scene_on_level(EnemyDeathEffectScene, death_effect_location.global_position)
 	queue_free()
 
 
