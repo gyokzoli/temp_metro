@@ -3,7 +3,7 @@ extends Node2D
 
 const ExplosionEffectScene: PackedScene = preload("res://scenes/explosion_effect.tscn")
 
-@export var speed = 250
+@export var speed = 150
 
 var velocity: Vector2 = Vector2.ZERO
 

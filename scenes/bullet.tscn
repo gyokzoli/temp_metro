@@ -62,6 +62,7 @@ height = 8.0
 
 [node name="Bullet" instance=ExtResource("1_1ykbp")]
 script = ExtResource("2_0b4cb")
+speed = 250
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="0"]
 position = Vector2(2.38419e-07, 0)
