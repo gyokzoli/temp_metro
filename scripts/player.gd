@@ -111,7 +111,7 @@ func wall_jump_check(wall_axis: float) -> void:
 		state = move_state
 		double_jump = true
 		jump(int(jump_force * 0.75), false)
-		var wall_jump_effect_position: Vector2 = global_position + Vector2(wall_axis * 3.5, -2)
+		var wall_jump_effect_position: Vector2 = global_position + Vector2(wall_axis * 3.5, -8)
 		var wall_jump_effect: Node = Utils.instantiate_scene_on_level(WallJumpEffectScene, wall_jump_effect_position)
 		wall_jump_effect.scale.x = wall_axis
 
@@ -150,7 +150,7 @@ func apply_jump() -> void:
 
 func jump(force: int, create_effect: bool = true) -> void:
 		velocity.y = -force
-		if create_effect: Utils.instantiate_scene_on_level(JumpEffectScene, global_position)
+		if create_effect: Utils.instantiate_scene_on_level(JumpEffectScene, global_position - Vector2(0, 9))
 
 func update_animations(input_axis: float) -> void:
 	player_sprite_2d.scale.x = sign(get_local_mouse_position().x)

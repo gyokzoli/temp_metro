@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2hhpwc2jighw"]
+[gd_scene load_steps=13 format=3 uid="uid://c2hhpwc2jighw"]
 
 [ext_resource type="PackedScene" uid="uid://dqk8bn6esjcdt" path="res://scenes/world_tile_map.tscn" id="1_7fsb0"]
 [ext_resource type="PackedScene" uid="uid://b3r0qso15x568" path="res://scenes/moving_platform.tscn" id="2_6cjb2"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dvl3npq5qhfx0" path="res://scenes/missile_powerup.tscn" id="9_kc12q"]
 [ext_resource type="PackedScene" uid="uid://1v364l3pu5a1" path="res://scenes/door.tscn" id="10_l6qin"]
 [ext_resource type="Resource" uid="uid://dt5p46u0khujc" path="res://res_other/one_two_level.tres" id="11_nhnsa"]
+[ext_resource type="PackedScene" uid="uid://cyx4jr5aofbof" path="res://scenes/camera_limits.tscn" id="12_cjaur"]
 
 [node name="Level1" type="Node2D"]
 
@@ -124,6 +125,12 @@ position = Vector2(24, 120)
 position = Vector2(-136, 16)
 new_level_path = "res://scenes/level_2.tscn"
 connection = ExtResource("11_nhnsa")
+
+[node name="CameraLimits" parent="." instance=ExtResource("12_cjaur")]
+offset_left = -128.0
+offset_top = -216.0
+offset_right = 512.0
+offset_bottom = 192.0
 
 [editable path="MovingPlatform"]
 [editable path="MovingPlatform2"]
