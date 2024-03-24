@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://dqt6wqn73l3ll"]
+[gd_scene load_steps=2 format=3 uid="uid://dqt6wqn73l3ll"]
+
+[ext_resource type="Script" path="res://scripts/waypoint_pathfinding.gd" id="1_jpcc6"]
 
 [node name="WaypointPathfinding" type="Node2D"]
+script = ExtResource("1_jpcc6")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]

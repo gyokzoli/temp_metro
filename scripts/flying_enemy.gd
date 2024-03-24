@@ -7,12 +7,16 @@ const EnemyDeathEffectScene: PackedScene = preload("res://scenes/enemy_death_eff
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var statistics: Statistics = $Statistics
+@onready var waypoint_pathfinding: Node2D = $WaypointPathfinding
 
+
+func _ready() -> void:
+	set_physics_process(false)
 
 func _physics_process(delta: float) -> void:
 	var player = MainInstances.player
 	if player is CharacterBody2D:
-		move_toward_position(player.global_position, delta)
+		move_toward_position(waypoint_pathfinding.pathfinding_next_position, delta)
 	
 
 func move_toward_position(target_position: Vector2, delta: float) -> void:
@@ -28,3 +32,6 @@ func _on_hurtbox_hurt(_hitbox: Hitbox, damage: int) -> void:
 func _on_statistics_no_health() -> void:
 	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, global_position)
 	queue_free()
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	set_physics_process(true)
