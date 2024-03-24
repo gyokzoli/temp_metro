@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsd7op3osn5sx"]
+[gd_scene load_steps=15 format=3 uid="uid://bsd7op3osn5sx"]
 
 [ext_resource type="PackedScene" uid="uid://ci5h3ttepy8i8" path="res://scenes/player.tscn" id="1_2pgvb"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_7riex"]
@@ -9,8 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://j48dm7qnicma" path="res://scenes/pause_menu.tscn" id="7_2ssrv"]
 [ext_resource type="PackedScene" uid="uid://dxmw451oh44kt" path="res://scenes/health_meter.tscn" id="7_sqogv"]
 [ext_resource type="PackedScene" uid="uid://byde0o5ve0pdy" path="res://scenes/plant_enemy.tscn" id="8_3s46v"]
+[ext_resource type="PackedScene" uid="uid://bpptqraemje5s" path="res://scenes/missile_ui.tscn" id="8_vhlsr"]
 [ext_resource type="PackedScene" uid="uid://c8k5h7h0cdiv2" path="res://scenes/crawling_enemy.tscn" id="9_7i2ak"]
 [ext_resource type="PackedScene" uid="uid://cs8cgvjpwxpds" path="res://scenes/flying_enemy.tscn" id="10_8r5m7"]
+[ext_resource type="PackedScene" uid="uid://dx58ts8jrb34e" path="res://scenes/brick.tscn" id="13_8oxjd"]
+[ext_resource type="PackedScene" uid="uid://dvl3npq5qhfx0" path="res://scenes/missile_powerup.tscn" id="14_dcfcr"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_7riex")
@@ -59,6 +62,12 @@ metadata/_edit_use_anchors_ = true
 [node name="PauseMenu" parent="UI" instance=ExtResource("7_2ssrv")]
 visible = false
 
+[node name="MissileUI" parent="UI" instance=ExtResource("8_vhlsr")]
+offset_left = 8.0
+offset_top = 25.0
+offset_right = 22.0
+offset_bottom = 35.0
+
 [node name="Enemies" type="Node" parent="."]
 
 [node name="PlantEnemy" parent="Enemies" instance=ExtResource("8_3s46v")]
@@ -103,6 +112,18 @@ position = Vector2(464, 136)
 
 [node name="FlyingEnemy3" parent="Enemies" instance=ExtResource("10_8r5m7")]
 position = Vector2(296, 0)
+
+[node name="Brick" parent="." instance=ExtResource("13_8oxjd")]
+position = Vector2(-96, 0)
+
+[node name="Brick2" parent="." instance=ExtResource("13_8oxjd")]
+position = Vector2(-96, -16)
+
+[node name="Brick3" parent="." instance=ExtResource("13_8oxjd")]
+position = Vector2(-96, -32)
+
+[node name="MissilePowerup" parent="." instance=ExtResource("14_dcfcr")]
+position = Vector2(-40, 136)
 
 [editable path="MovingPlatform"]
 [editable path="MovingPlatform2"]
