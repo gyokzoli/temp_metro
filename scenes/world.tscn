@@ -35,7 +35,8 @@ position = Vector2(-11.3476, -9.02134)
 curve = ExtResource("5_civf0")
 
 [node name="PathFollow2D" parent="MovingPlatform/Path2D" index="0"]
-position = Vector2(-11.3476, -9.02134)
+position = Vector2(0, 8)
+progress = 0.0
 
 [node name="MovingPlatform2" parent="." instance=ExtResource("4_3i1w6")]
 position = Vector2(168, 32)
@@ -48,7 +49,8 @@ position = Vector2(32, 19.5733)
 position = Vector2(-128, 48)
 
 [node name="PathFollow2D" parent="MovingPlatform2/Path2D" index="0"]
-position = Vector2(160, -28.4267)
+position = Vector2(160, -8)
+progress = 0.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -69,10 +71,6 @@ offset_right = 22.0
 offset_bottom = 35.0
 
 [node name="Enemies" type="Node" parent="."]
-
-[node name="PlantEnemy" parent="Enemies" instance=ExtResource("8_3s46v")]
-position = Vector2(88, -64)
-rotation = 3.14159
 
 [node name="PlantEnemy2" parent="Enemies" instance=ExtResource("8_3s46v")]
 position = Vector2(272, 48)
@@ -98,14 +96,11 @@ position = Vector2(136, 160)
 position = Vector2(232, 152)
 
 [node name="CrawlingEnemy" parent="Enemies" instance=ExtResource("9_7i2ak")]
-position = Vector2(48, 128)
+position = Vector2(128, 128)
 crawling_direction = -1
 
 [node name="CrawlingEnemy2" parent="Enemies" instance=ExtResource("9_7i2ak")]
 position = Vector2(248, 112)
-
-[node name="FlyingEnemy" parent="Enemies" instance=ExtResource("10_8r5m7")]
-position = Vector2(96, 40)
 
 [node name="FlyingEnemy2" parent="Enemies" instance=ExtResource("10_8r5m7")]
 position = Vector2(464, 136)
@@ -124,6 +119,21 @@ position = Vector2(-96, -32)
 
 [node name="MissilePowerup" parent="." instance=ExtResource("14_dcfcr")]
 position = Vector2(-40, 136)
+
+[node name="Brick4" parent="." instance=ExtResource("13_8oxjd")]
+position = Vector2(64, 112)
+
+[node name="Brick5" parent="." instance=ExtResource("13_8oxjd")]
+position = Vector2(64, 96)
+
+[node name="Brick6" parent="." instance=ExtResource("13_8oxjd")]
+position = Vector2(64, 80)
+
+[node name="MissilePowerup2" parent="." instance=ExtResource("14_dcfcr")]
+position = Vector2(24, 120)
+
+[node name="CrawlingEnemy" parent="." instance=ExtResource("9_7i2ak")]
+position = Vector2(200, 48)
 
 [editable path="MovingPlatform"]
 [editable path="MovingPlatform2"]
