@@ -68,7 +68,6 @@ func move_state (delta: float) -> void:
 	move_and_slide()
 	var just_left_edge: bool = was_on_floor and not is_on_floor() and velocity.y >= 0
 	if just_left_edge:
-		#coyote_timer.wait_time = 0.2
 		coyote_timer.start()
 	wall_check()
 
@@ -170,7 +169,8 @@ func update_animations(input_axis: float) -> void:
 func die() -> void:
 	camera_2d.reparent(get_tree().current_scene)
 	queue_free()
-	
+	Events.player_died.emit()
+
 
 func _on_drop_through_timer_timeout() -> void:
 	set_collision_mask_value(2, true)
@@ -180,6 +180,3 @@ func _on_hurtbox_hurt(_hitbox: Hitbox, _damage: int) -> void:
 	Events.add_screenshake.emit(3, 0.25)
 	PlayerStats.health -= 1
 	blinking_animation_player.play("blink")
-	#hurtbox.is_invincible = true
-	#await blinking_animation_player.animation_finished
-	#hurtbox.is_invincible = false

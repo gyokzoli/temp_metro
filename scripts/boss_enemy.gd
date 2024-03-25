@@ -49,6 +49,7 @@ func rush_state(delta: float) -> void:
 	if not player is Player: return
 	var direction: Vector2 = global_position.direction_to(player.global_position)
 	velocity = velocity.move_toward(direction * max_velocity, acceleration * delta)
+	#velocity = clamp(Vector2.ZERO, max_velocity, velocity.move_toward(Vector2.ZERO, acceleration * delta))
 	move(delta)
 	
 func fire_state(_delta: float) -> void:

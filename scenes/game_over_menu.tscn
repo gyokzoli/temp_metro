@@ -1,17 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://j48dm7qnicma"]
+[gd_scene load_steps=2 format=3 uid="uid://kgb0qntf2kaq"]
 
-[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_lc174"]
+[ext_resource type="Script" path="res://scripts/game_over_menu.gd" id="1_c06mr"]
 
-[node name="PauseMenu" type="ColorRect"]
-process_mode = 3
-z_index = 10
+[node name="GameOverMenu" type="ColorRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
-script = ExtResource("1_lc174")
+script = ExtResource("1_c06mr")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -27,25 +25,19 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-text = "game paused"
+text = "game over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
-text = "resume game"
-
-[node name="MenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(64, 16)
-layout_mode = 2
-text = "main menu"
+text = "load game"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
 text = "quit"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

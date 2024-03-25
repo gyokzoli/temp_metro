@@ -6,6 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://b8ewwpijlarlp" path="res://scenes/hitbox.tscn" id="3_n3ige"]
 [ext_resource type="PackedScene" uid="uid://drv25xhx23l5d" path="res://scenes/statistics.tscn" id="5_eqte0"]
 
+[sub_resource type="Animation" id="Animation_xa26i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_mes7u"]
 resource_name = "attack"
 length = 2.0
@@ -35,21 +50,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"fire_bullet"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_xa26i"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_50h6c"]
@@ -103,6 +103,10 @@ shape = SubResource("CircleShape2D_oags7")
 
 [node name="DeathEffectLocation" type="Marker2D" parent="."]
 position = Vector2(0, -6)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(9.53674e-07, -6.5)
+scale = Vector2(3.2, 3.15)
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="no_health" from="Statistics" to="." method="_on_statistics_no_health"]

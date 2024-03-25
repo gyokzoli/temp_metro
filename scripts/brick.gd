@@ -3,8 +3,8 @@ extends StaticBody2D
 
 func _ready() -> void:
 	update_collision_layer()
-	await get_tree().process_frame
-	var id = WorldStash.get_id(self)
+	#await get_tree().process_frame
+	var id: String = WorldStash.get_id(self)
 	if WorldStash.retrieve(id, "freed"): queue_free()
 
 
