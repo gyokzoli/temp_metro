@@ -1,1 +1,1 @@
-{"Level1_MissilePowerup2_(24, 120)":{"freed":true},"Level1_MissilePowerup_(-16, 8)":{"freed":true},"level":{"file_path":"res://scenes/level_1.tscn"},"player":{"max_health":4,"max_missiles":6,"x":116.833572387695,"y":72.0649719238281}}
+{"Level1_MissilePowerup2_(24, 120)":{"freed":true},"Level1_MissilePowerup_(-16, 8)":{"freed":true},"level":{"file_path":"res://scenes/level_1.tscn"},"player":{"max_health":4,"max_missiles":6,"x":117.113136291504,"y":67.5629272460938}}

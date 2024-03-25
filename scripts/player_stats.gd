@@ -8,9 +8,6 @@ extends Statistics
 signal max_missiles_changed
 signal missiles_changed
 
-func _ready() -> void:
-	pass
-
 func set_max_missiles(value: int) -> void:
 	max_missiles = value
 	max_missiles_changed.emit()
@@ -36,4 +33,3 @@ func retrieve_stats() -> void:
 	max_health = WorldStash.retrieve("player", "max_health")
 	max_missiles = WorldStash.retrieve("player", "max_missiles")
 	refill()
-

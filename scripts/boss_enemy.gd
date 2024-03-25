@@ -25,7 +25,7 @@ var fire_state_length: int = 5
 @onready var statistics: Statistics = $Statistics
 
 
-func set_state(value) -> void:
+func set_state(value: Callable) -> void:
 	state = value
 	state_init = true
 

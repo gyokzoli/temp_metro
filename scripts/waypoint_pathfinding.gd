@@ -2,7 +2,7 @@ extends Node2D
 
 @export var waypoint_buffer_distance: int = 8
 
-var waypoints: Array = []
+var waypoints: Array[Vector2] = []
 var target: Node2D
 var pathfinding_next_position: Vector2
 

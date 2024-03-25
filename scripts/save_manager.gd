@@ -28,8 +28,8 @@ func load_game() -> void:
 	var file_path: String = WorldStash.retrieve("level", "file_path")
 	MainInstances.world.load_level(file_path)
 	#LOAD_PLAYER
-	var player_x = WorldStash.retrieve("player", "x")
-	var player_y = WorldStash.retrieve("player", "y")
+	var player_x: float = WorldStash.retrieve("player", "x")
+	var player_y: float = WorldStash.retrieve("player", "y")
 	PlayerStats.retrieve_stats()
 	MainInstances.player.global_position = Vector2(player_x, player_y)
 	save_file.close()

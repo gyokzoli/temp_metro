@@ -10,9 +10,6 @@ func _ready() -> void:
 	PlayerStats.health_changed.connect(update_health_ui)
 	PlayerStats.max_health_changed.connect(update_max_health_ui)
 
-func _process(_delta: float) -> void:
-	pass
-
 func update_health_ui() -> void:
 	full.size.x = PlayerStats.health * 5 + 1
 	
