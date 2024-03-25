@@ -275,7 +275,7 @@ libraries = {
 autoplay = "fly"
 
 [node name="Statistics" parent="." instance=ExtResource("6_yjtgr")]
-max_health = 5
+max_health = 200
 
 [node name="FireRateTimer" type="Timer" parent="."]
 wait_time = 0.1

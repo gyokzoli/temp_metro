@@ -5,6 +5,10 @@ extends Node2D
 @onready var brick_3: Brick = $Bricks/Brick3
 @onready var brick_4: Brick = $Bricks/Brick4
 
+func _ready() -> void:
+	bricks.hide()
+	#await Music.fade()
+	#Music.play(Music.boss_theme)
 
 func _on_trigger_trigger_entered() -> void:
 	if not WorldStash.retrieve("firts_boss", "freed"):

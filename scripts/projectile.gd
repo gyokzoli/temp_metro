@@ -15,6 +15,8 @@ func update_velocity() -> void:
 	velocity.x = speed
 	velocity = velocity.rotated(rotation)
 
+func _ready() -> void:
+	Sound.play(Sound.bullet, randf_range(0.6, 1.2), -5)
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

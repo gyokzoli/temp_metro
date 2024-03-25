@@ -33,6 +33,7 @@ connection = ExtResource("10_t4acw")
 position = Vector2(88, -56)
 
 [node name="BossEnemy" parent="." instance=ExtResource("6_50f8i")]
+z_index = 1
 position = Vector2(152, 40)
 targets = Array[NodePath]([NodePath("../BossTarget"), NodePath("../BossTarget2"), NodePath("../BossTarget3"), NodePath("../BossTarget4"), NodePath("../BossTarget5")])
 

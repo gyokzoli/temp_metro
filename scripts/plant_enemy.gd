@@ -20,11 +20,13 @@ func fire_bullet() -> void:
 	#var velocity: Vector2 = direction.normalized() * bullet_speed
 	#velocity = velocity.rotated(randf_range(-deg_to_rad(spread/2.0), deg_to_rad(spread/2.0)))
 	#bullet.velocity = velocity
-	#with this, the enemy bullets are rotated to their vector
+	
+	#with the following section, the enemy bullets are rotated to their vector ==>
 	bullet.rotation = direction.angle()
 	bullet.rotate(randf_range(-deg_to_rad(spread/2.0), deg_to_rad(spread/2.0)))
 	bullet.speed = bullet_speed
 	bullet.update_velocity()
+	#<== end of section
 
 
 func _on_hurtbox_hurt(_hitbox: Hitbox, damage: int) -> void:

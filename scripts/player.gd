@@ -117,6 +117,7 @@ func wall_jump_check(wall_axis: float) -> void:
 
 
 func create_dust_effect() -> void:
+	Sound.play(Sound.step, randf_range(0.8, 1.1), -5.0)
 	Utils.instantiate_scene_on_level(DustEffectScene, global_position)
 	
 func is_moving(input_axis: float):
@@ -149,8 +150,10 @@ func apply_jump() -> void:
 			double_jump = false
 
 func jump(force: int, create_effect: bool = true) -> void:
+		Sound.play(Sound.jump, randf_range(0.8, 1.1))
 		velocity.y = -force
-		if create_effect: Utils.instantiate_scene_on_level(JumpEffectScene, global_position - Vector2(0, 9))
+		if create_effect:
+			Utils.instantiate_scene_on_level(JumpEffectScene, global_position - Vector2(0, 9))
 
 func update_animations(input_axis: float) -> void:
 	player_sprite_2d.scale.x = sign(get_local_mouse_position().x)
@@ -173,6 +176,7 @@ func _on_drop_through_timer_timeout() -> void:
 	set_collision_mask_value(2, true)
 
 func _on_hurtbox_hurt(_hitbox: Hitbox, _damage: int) -> void:
+	Sound.play(Sound.hurt)
 	Events.add_screenshake.emit(3, 0.25)
 	PlayerStats.health -= 1
 	blinking_animation_player.play("blink")
