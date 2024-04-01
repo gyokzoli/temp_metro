@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2hhpwc2jighw"]
+[gd_scene load_steps=16 format=3 uid="uid://c2hhpwc2jighw"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_1d146"]
 [ext_resource type="PackedScene" uid="uid://dqk8bn6esjcdt" path="res://scenes/world_tile_map.tscn" id="1_7fsb0"]
@@ -14,6 +14,8 @@
 [ext_resource type="Resource" uid="uid://dt5p46u0khujc" path="res://res_other/one_two_level.tres" id="11_nhnsa"]
 [ext_resource type="PackedScene" uid="uid://cyx4jr5aofbof" path="res://scenes/camera_limits.tscn" id="12_cjaur"]
 [ext_resource type="PackedScene" uid="uid://2wq55d2s0mbl" path="res://scenes/save_station.tscn" id="14_vrvng"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w4647"]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_1d146")
@@ -82,21 +84,14 @@ position = Vector2(136, 160)
 [node name="WalkingEnemy3" parent="Enemies" instance=ExtResource("5_2jiv6")]
 position = Vector2(232, 152)
 
-[node name="CrawlingEnemy" parent="Enemies" instance=ExtResource("6_4nska")]
-position = Vector2(128, 128)
-crawling_direction = -1
-
-[node name="CrawlingEnemy2" parent="Enemies" instance=ExtResource("6_4nska")]
-position = Vector2(248, 112)
-
 [node name="FlyingEnemy2" parent="Enemies" instance=ExtResource("7_sihfd")]
 position = Vector2(464, 136)
 
 [node name="FlyingEnemy3" parent="Enemies" instance=ExtResource("7_sihfd")]
 position = Vector2(296, 0)
 
-[node name="CrawlingEnemy" parent="." instance=ExtResource("6_4nska")]
-position = Vector2(456, 80)
+[node name="CrawlingEnemy" parent="Enemies" instance=ExtResource("6_4nska")]
+position = Vector2(104, 128)
 
 [node name="Interactable" type="Node" parent="."]
 
@@ -137,6 +132,11 @@ offset_bottom = 192.0
 
 [node name="SaveStation" parent="." instance=ExtResource("14_vrvng")]
 position = Vector2(128, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_w4647")
 
 [editable path="MovingPlatform"]
 [editable path="MovingPlatform2"]

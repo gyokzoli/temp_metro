@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 const EnemyDeathEffectScene: PackedScene = preload("res://scenes/enemy_death_effect.tscn")
 

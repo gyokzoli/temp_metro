@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b8ewwpijlarlp" path="res://scenes/hitbox.tscn" id="3_064fa"]
 [ext_resource type="PackedScene" uid="uid://drv25xhx23l5d" path="res://scenes/statistics.tscn" id="5_eclce"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uf3xw"]
+size = Vector2(14, 6)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gfdd4"]
 atlas = ExtResource("1_s86uq")
 region = Rect2(0, 0, 16, 16)
@@ -54,14 +57,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uf3xw"]
-size = Vector2(14, 6)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8bt2"]
 size = Vector2(14, 4)
 
-[node name="CrawlingEnemy" type="Node2D"]
+[node name="CrawlingEnemy" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 15
 script = ExtResource("1_v3381")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_uf3xw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)

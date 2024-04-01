@@ -178,5 +178,5 @@ func _on_drop_through_timer_timeout() -> void:
 func _on_hurtbox_hurt(_hitbox: Hitbox, _damage: int) -> void:
 	Sound.play(Sound.hurt)
 	Events.add_screenshake.emit(3, 0.25)
-	PlayerStats.health -= 1
+	#PlayerStats.health -= 1
 	blinking_animation_player.play("blink")
